@@ -1,3 +1,3 @@
 #!/bin/bash
-qmake GaborFilterDesktop.pro
+qmake ToolGaborFilterDesktop.pro
 make

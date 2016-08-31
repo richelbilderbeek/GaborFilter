@@ -1,3 +1,3 @@
 #!/bin/bash
-qmake GaborFilterConsole.pro
+qmake ToolGaborFilterConsole.pro
 make
