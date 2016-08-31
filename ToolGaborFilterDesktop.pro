@@ -39,13 +39,9 @@ unix {
   QMAKE_CXXFLAGS += -Werror
 }
 
-#
-#
-# Boost
-#
-#
+# Thanks to Qt
+QMAKE_CXXFLAGS += -Wno-unused-variable
 
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+# gcov
+QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+LIBS += -lgcov

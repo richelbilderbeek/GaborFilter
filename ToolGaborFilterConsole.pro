@@ -53,3 +53,10 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
+
+# Thanks to Qt
+QMAKE_CXXFLAGS += -Wno-unused-variable
+
+# gcov
+QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+LIBS += -lgcov
