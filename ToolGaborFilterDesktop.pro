@@ -23,21 +23,17 @@ include(../../Tools/ToolGaborFilter/ToolGaborFilterDesktop.pri)
 SOURCES += qtmain.cpp
 
 
-#
-#
-# Type of compile
-#
-#
-
+# Debug and release mode
+CONFIG += debug_and_release
 CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+  DEFINES += NDEBUG
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
+# C++14
+QMAKE_CXX = g++-5
+QMAKE_LINK = g++-5
+QMAKE_CC = gcc-5
+QMAKE_CXXFLAGS += -Wall -Wextra -Weffc++ -Werror -std=c++14
 
 # Thanks to Qt
 QMAKE_CXXFLAGS += -Wno-unused-variable

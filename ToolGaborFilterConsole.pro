@@ -27,32 +27,17 @@ include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
 include(../../Tools/ToolGaborFilter/ToolGaborFilterConsole.pri)
 
-#
-#
-# Type of compile
-#
-#
-
+# Debug and release mode
+CONFIG += debug_and_release
 CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+  DEFINES += NDEBUG
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+# C++14
+QMAKE_CXX = g++-5
+QMAKE_LINK = g++-5
+QMAKE_CC = gcc-5
+QMAKE_CXXFLAGS += -Wall -Wextra -Weffc++ -Werror -std=c++14
 
 # Thanks to Qt
 QMAKE_CXXFLAGS += -Wno-unused-variable
