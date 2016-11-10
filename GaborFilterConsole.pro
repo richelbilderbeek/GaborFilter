@@ -16,16 +16,20 @@ TEMPLATE = app
 SOURCES += main.cpp
 
 
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppGaborFilter/CppGaborFilter.pri)
-include(../../Classes/CppGaborFilterWidget/CppGaborFilterWidget.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRectangle/CppRectangle.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-include(../../Classes/CppWidget/CppWidget.pri)
-include(../../Tools/ToolGaborFilter/ToolGaborFilterConsole.pri)
+include(../RibiClasses/CppAbout/CppAbout.pri)
+include(../RibiClasses/CppContainer/CppContainer.pri)
+include(../RibiClasses/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../RibiClasses/CppGaborFilter/CppGaborFilter.pri)
+include(../RibiClasses/CppGaborFilterWidget/CppGaborFilterWidget.pri)
+include(../RibiClasses/CppGeometry/CppGeometry.pri)
+include(../RibiClasses/CppHelp/CppHelp.pri)
+include(../RibiClasses/CppMenuDialog/CppMenuDialog.pri)
+include(../RibiClasses/CppPlane/CppPlane.pri)
+include(../RibiClasses/CppRectangle/CppRectangle.pri)
+include(../RibiClasses/CppRibiRegex/CppRibiRegex.pri)
+include(../RibiClasses/CppWidget/CppWidget.pri)
+include(../RibiLibraries/Apfloat.pri)
+include(GaborFilterConsole.pri)
 
 # Debug and release mode
 CONFIG += debug_and_release

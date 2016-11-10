@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttoolgaborfiltermenudialog.h"
+#include "qtgaborfiltermenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])

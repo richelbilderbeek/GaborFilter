@@ -26,7 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "help.h"
-#include "richelbilderbeekprogram.h"
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
 #include "menudialog.h"
@@ -38,16 +37,11 @@ struct ToolGaborFilterMenuDialog final : public MenuDialog
 {
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
-  boost::shared_ptr<const Program> GetProgram() const noexcept override;
   std::string GetVersion() const noexcept override;
   std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 };
 
 } //~namespace ribi

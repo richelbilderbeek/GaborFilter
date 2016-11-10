@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>R.png</file>
-        <file>ToolGaborFilter.png</file>
+        <file>GaborFilter.png</file>
     </qresource>
 </RCC>

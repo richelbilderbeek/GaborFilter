@@ -25,15 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
-#include "richelbilderbeekprogram.h"
-#include "testtimer.h"
-#include "trace.h"
 
 int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -57,8 +51,6 @@ ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
-  a.AddLibrary("TestTimer version: " + TestTimer::GetVersion());
-  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -76,15 +68,6 @@ ribi::Help ribi::ToolGaborFilterMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::ToolGaborFilterMenuDialog::GetProgram() const noexcept
-{
-  boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
-  };
-  assert(p);
-  return p;
-}
-
 std::string ribi::ToolGaborFilterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
@@ -98,14 +81,3 @@ std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() co
   };
 }
 
-#ifndef NDEBUG
-void ribi::ToolGaborFilterMenuDialog::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-}
-#endif

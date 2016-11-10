@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
-#include "toolgaborfiltermenudialog.h"
+#include "gaborfiltermenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
