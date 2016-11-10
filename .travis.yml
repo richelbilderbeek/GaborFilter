@@ -27,17 +27,13 @@ addons:
 
 script: 
   - ./install_other_githubs.sh
-  - ./build_console.sh
-  - ./build_desktop.sh
-  - ./build_console_test.sh
+  - qmake GaborFilterConsole.pro
+  - make
+  - qmake GaborFilterDesktop.pro
+  - make
   - ./get_code_cov.sh
   - codecov
   - ./do_oclint.sh
 
 after_success: 
   - bash <(curl -s https://codecov.io/bash)
-  - cat oclint.log
-
-after_failure: 
-  - cat oclint.log
-  - cd /usr/include; find -P . -name "QFile"
