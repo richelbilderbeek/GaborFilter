@@ -10,7 +10,6 @@ include(../plane/plane.pri)
 include(../RibiClasses/CppRectangle/CppRectangle.pri)
 include(../RibiClasses/CppRibiRegex/CppRibiRegex.pri)
 include(../RibiClasses/CppWidget/CppWidget.pri)
-include(../RibiLibraries/Apfloat.pri)
 include(GaborFilterConsole.pri)
 SOURCES += main.cpp
 
