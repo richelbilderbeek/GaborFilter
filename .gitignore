@@ -37,3 +37,4 @@ docs/app/gaborfilter_wasm.wasm
 wordlist.dic
 
 coverage/
+build_*/
