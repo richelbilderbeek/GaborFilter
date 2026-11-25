@@ -1,6 +1,7 @@
 # GaborFilter
 
-[Go to the nicely rendered website](https://richelbilderbeek.github.io/GaborFilter/).
+[Go to the nicely rendered
+website](https://richelbilderbeek.github.io/GaborFilter/).
 
 Branch|[![Travis CI logo](TravisCI.png)](https://travis-ci.org)|[![Codecov logo](Codecov.png)](https://www.codecov.io)
 ---|---|---
