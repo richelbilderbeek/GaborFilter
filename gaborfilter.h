@@ -84,8 +84,8 @@ struct GaborFilter
 
   private:
   virtual ~GaborFilter() noexcept {}
-  friend void boost::checked_delete<>(GaborFilter*);
-  friend void boost::checked_delete<>(const GaborFilter*);
+  friend void boost::checked_delete<>(GaborFilter*) BOOST_NOEXCEPT;
+  friend void boost::checked_delete<>(const GaborFilter*) BOOST_NOEXCEPT;
 
   ///Angle of the filter in radians
   double m_angle;
