@@ -29,3 +29,7 @@
 *.pro.user
 
 site/
+
+# WebAssembly build output
+docs/app/gaborfilter_wasm.js
+docs/app/gaborfilter_wasm.wasm

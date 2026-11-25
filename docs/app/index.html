@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GaborFilter</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 1rem; color: #222; }
+  .app { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+  canvas { width: 320px; height: 320px; border: 1px solid #ccc; image-rendering: pixelated; }
+  .controls { display: grid; grid-template-columns: auto 1fr 4em; gap: 0.6rem 0.8rem; align-items: center; min-width: 260px; }
+  input[type=range] { width: 100%; accent-color: #ff9800; }
+  output { font-variant-numeric: tabular-nums; text-align: right; }
+  #status { color: #a00; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="app">
+  <canvas id="canvas" width="256" height="256"></canvas>
+  <div class="controls">
+    <label for="angle">Angle</label>
+    <input id="angle" type="range" min="0" max="360" value="22.5" step="0.5">
+    <output id="angle_out"></output>
+
+    <label for="frequency">Frequency</label>
+    <input id="frequency" type="range" min="0" max="64" value="16" step="0.1">
+    <output id="frequency_out"></output>
+
+    <label for="sigma">Sigma</label>
+    <input id="sigma" type="range" min="1" max="100" value="50" step="1">
+    <output id="sigma_out"></output>
+  </div>
+</div>
+<div id="status">Loading WebAssembly module...</div>
+
+<script src="gaborfilter_wasm.js"></script>
+<script>
+(async () => {
+  const status = document.getElementById('status');
+  let mod;
+  try {
+    mod = await createGaborFilterModule();
+  } catch (e) {
+    status.textContent = 'Could not load the WebAssembly module: ' + e;
+    return;
+  }
+  status.textContent = '';
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const angle = document.getElementById('angle');
+  const frequency = document.getElementById('frequency');
+  const sigma = document.getElementById('sigma');
+  // As in the desktop version: sigma slider spans [0, 2 * suggested sigma]
+  const suggest = mod._gabor_suggest_sigma(2.0, 2.0);
+
+  function draw() {
+    const a = Number(angle.value) * Math.PI / 180.0;
+    const f = Number(frequency.value);
+    const s = 2.0 * suggest * Number(sigma.value) / Number(sigma.max);
+    document.getElementById('angle_out').textContent = angle.value + '°';
+    document.getElementById('frequency_out').textContent = f.toFixed(1);
+    document.getElementById('sigma_out').textContent = s.toFixed(2);
+    const ptr = mod._gabor_render(w, h, a, f, s);
+    if (!ptr) return;
+    const pixels = new Uint8ClampedArray(mod.HEAPU8.buffer, ptr, w * h * 4);
+    ctx.putImageData(new ImageData(new Uint8ClampedArray(pixels), w, h), 0, 0);
+  }
+  for (const el of [angle, frequency, sigma]) el.addEventListener('input', draw);
+  draw();
+})();
+</script>
+</body>
+</html>

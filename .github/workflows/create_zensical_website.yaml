@@ -10,6 +10,10 @@ on:
       - .github/workflows/create_zensical_website.yaml
       - 'docs/**'
       - zensical.toml
+      - 'wasm/**'
+      - gaborfilter.cpp
+      - gaborfilter.h
+      - scripts/build_wasm.sh
 
 permissions:
   contents: read
@@ -28,6 +32,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
+      - uses: mymindstorm/setup-emsdk@v14
+      - name: Build WebAssembly version
+        run: ./scripts/build_wasm.sh
       - run: pip install zensical
       - run: zensical build --clean --strict
       - uses: actions/upload-pages-artifact@v4
