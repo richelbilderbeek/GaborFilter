@@ -1,4 +1,7 @@
 # Adapted from https://zensical.org/docs/publish-your-site/#with-github-actions
+#
+# Also builds the WebAssembly version of GaborFilter,
+# which is used by the 'Run' page of the website.
 name: Create Zensical website
 
 on:
@@ -21,10 +24,7 @@ permissions:
   id-token: write
 
 jobs:
-  create_zensical_website:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/configure-pages@v5
@@ -40,4 +40,13 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: site
-      - uses: actions/deploy-pages@v4
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
